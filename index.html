@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mega Hizmet Batman - Nakliyat, Temizlik, Paketleme, Tamirat</title>
+    <style>
+        /* GENEL STİL */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #5a4a3a;
+            background-color: #fff8f2; /* Açık turuncu tonu */
+        }
+        
+        /* NAVBAR */
+        header {
+            background-color: #ffffff;
+            padding: 20px 0;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .site-title {
+            font-size: 26px;
+            font-weight: 700;
+            color: #ff7b25; /* Turuncu */
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+        
+        .nav-links a {
+            color: #5a4a3a;
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: #ff7b25;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #ff7b25;
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        /* HERO BANNER - KAMYON VE YOL */
+        .hero {
+            background-color: #ffeedd; /* Pastel turuncu */
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .road-container {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100px;
+        }
+        
+        .road {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 60px;
+            background-color: #34495e; /* Koyu yol rengi */
+        }
+        
+        .road-line {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            height: 4px;
+            background: repeating-linear-gradient(to right, #ffeedd, #ffeedd 20px, transparent 20px, transparent 40px);
+            transform: translateY(-50%);
+        }
+        
+        .truck-animation {
+            position: absolute;
+            bottom: 50px; /* Yolun üstünde */
+            left: -200px;
+            animation: truckMove 18s linear infinite;
+            z-index: 3;
+        }
+        
+        .houses {
+            position: absolute;
+            bottom: 60px;
+            width: 100%;
+            height: 150px;
+            display: flex;
+            justify-content: space-around;
+            z-index: 2;
+        }
+        
+        .house {
+            width: 80px;
+            height: 80px;
+            background-color: #1abc9c; /* Turkuaz */
+            position: relative;
+            margin-top: 70px;
+            opacity: 0.9;
+            border-radius: 5px;
+        }
+        
+        .house:before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 40px solid transparent;
+            border-right: 40px solid transparent;
+            border-bottom: 20px solid #16a085; /* Koyu turkuaz */
+        }
+        
+        .house-window {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #ffeedd;
+            top: 30px;
+            left: 15px;
+            border-radius: 3px;
+        }
+        
+        .house-door {
+            position: absolute;
+            width: 20px;
+            height: 30px;
+            background-color: #ff7b25; /* Turuncu */
+            bottom: 0;
+            left: 30px;
+            border-radius: 3px 3px 0 0;
+        }
+        
+        @keyframes truckMove {
+            0% { transform: translateX(-200px); }
+            100% { transform: translateX(calc(100vw + 200px)); }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 4;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 10px;
+            max-width: 80%;
+            border: 2px solid #ff7b25;
+        }
+        
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            color: #ff7b25;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 0;
+            color: #5a4a3a;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* HİZMETLER */
+        .services {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: #ff7b25;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: #1abc9c; /* Turkuaz */
+            margin: 15px auto 0;
+        }
+        
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 10px;
+            padding: 35px 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: all 0.3s;
+            border-top: 4px solid #ff7b25;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(255, 123, 37, 0.15);
+        }
+        
+        .service-icon {
+            font-size: 70px;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #5a4a3a;
+        }
+        
+        .service-card p {
+            color: #7a6b5a;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        /* Animasyonlar */
+        .service-card:nth-child(1) .service-icon {
+            animation: shake 2s infinite;
+            color: #ff7b25;
+        }
+        
+        .service-card:nth-child(2) .service-icon {
+            animation: shine 3s infinite;
+            color: #1abc9c;
+        }
+        
+        .service-card:nth-child(3) .service-icon {
+            animation: bounce 1.8s infinite;
+            color: #ff7b25;
+        }
+        
+        .service-card:nth-child(4) .service-icon {
+            animation: spin 4s linear infinite;
+            color: #1abc9c;
+        }
+
+        /* FOOTER */
+        footer {
+            background: linear-gradient(135deg, #ff7b25, #e67e22);
+            color: white;
+            text-align: center;
+            padding: 50px 0 30px;
+            margin-top: 70px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            text-align: left;
+        }
+        
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        
+        .footer-column p, 
+        .footer-column a {
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 12px;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: #1abc9c; /* Turkuaz */
+        }
+        
+        .copyright {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <header>
+        <div class="navbar">
+            <a href="#" class="site-title">MEGA HİZMET BATMAN</a>
+            <div class="nav-links">
+                <a href="#">Ana Sayfa</a>
+                <a href="#">Hizmetler</a>
+                <a href="#">Hakkımızda</a>
+                <a href="#">İletişim</a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- HERO BANNER - KAMYON VE EVLER -->
+    <section class="hero">
+        <div class="road-container">
+            <div class="road"></div>
+            <div class="road-line"></div>
+        </div>
+        
+        <div class="houses">
+            <div class="house">
+                <div class="house-window"></div>
+                <div class="house-door"></div>
+            </div>
+            <div class="house">
+                <div class="house-window"></div>
+                <div class="house-door"></div>
+            </div>
+            <div class="house">
+                <div class="house-window"></div>
+                <div class="house-door"></div>
+            </div>
+            <div class="house">
+                <div class="house-window"></div>
+                <div class="house-door"></div>
+            </div>
+        </div>
+        
+        <div class="truck-animation">
+            <svg width="200" height="100" viewBox="0 0 200 100">
+                <rect x="20" y="50" width="120" height="30" rx="5" fill="#ff7b25"/>
+                <rect x="140" y="40" width="40" height="40" rx="5" fill="#ff7b25"/>
+                <circle cx="50" cy="80" r="15" fill="#34495e"/>
+                <circle cx="150" cy="80" r="15" fill="#34495e"/>
+                <rect x="30" y="35" width="60" height="15" fill="#1abc9c"/>
+                <text x="60" y="47" font-family="Arial" font-size="10" fill="white" text-anchor="middle" font-weight="bold">MEGA</text>
+            </svg>
+        </div>
+        
+        <div class="hero-content">
+            <h1>Batman'ın Çok Yönlü Hizmet Ekibi</h1>
+            <p>Ev taşıma, temizlik ve tadilatta MEGA hizmet.</p>
+        </div>
+    </section>
+    
+    <!-- HİZMETLER -->
+    <section class="services">
+        <h2 class="section-title">Hizmetlerimiz</h2>
+        <div class="service-grid">
+            <div class="service-card">
+                <div class="service-icon">🚚</div>
+                <h3>Nakliyat</h3>
+                <p>Şehir içi ve şehirler arası güvenli taşıma ve nakliye hizmeti.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🧹</div>
+                <h3>Temizlik</h3>
+                <p>Profesyonel temizlik ekibi ile ev, iş yeri ve depolarınıza hijyen getiriyoruz.</p>
+            </div>
+            
+            
+            <div class="service-card">
+                <div class="service-icon">🔨</div>
+                <h3>Yenileme & Tadilat</h3>
+                <p>Her türlü tadilat, tamirat ve onarım ihtiyaçlarınız için alanında ustalarımızla hizmet veriyoruz.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Mega Hizmet Batman</h3>
+                
+            </div>
+            <div class="footer-column">
+                <h3>Hızlı Linkler</h3>
+                <a href="#">Ana Sayfa</a>
+                <a href="#">Hizmetler</a>
+                <a href="#">Hakkımızda</a>
+                <a href="#">İletişim</a>
+            </div>
+            <div class="footer-column">
+                <h3>İletişim</h3>
+                <p>📞 0555 555 55 55</p>
+                <p>📧 info@megahizmetbatman.com</p>
+                <p>📍 Batman Merkez</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2023 Mega Hizmet Batman. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+</body>
+</html>
